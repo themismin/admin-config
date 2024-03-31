@@ -1,0 +1,25 @@
+{
+    "name": "themismin/admin-config",
+    "autoload": {
+        "files": [
+            "helpers.php"
+        ],
+        "psr-4": {
+            "ThemisMin\\AdminConfig\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ThemisMin",
+            "email": "ThemisMin@gmail.com"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ThemisMin\\AdminConfig\\AdminConfigServiceProvider"
+            ]
+        }
+    }
+}
