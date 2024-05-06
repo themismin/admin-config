@@ -393,3 +393,28 @@ if (!function_exists('asset_cn')) {
         return trim(config('filesystems.disks.admin.cdn'), '/') . '/lanshauk-cn/' . trim($path, '/');
     }
 }
+
+if (!function_exists('pages_reduce')) {
+    function pages_reduce($elements)
+    {
+        if (count($elements) == 3) {    // 包含...
+            $index = 0;
+            foreach ($elements as $key => $element) {
+                $index++;
+                if ($index == 1) {    // ...前
+                    if (count($element) > 3) {
+                        $elements[$key] = array_slice($element, 0, 3);
+                    }
+                } else if ($index == 3) {   // ...后
+                    $links = [];
+                    foreach (array_reverse(array_slice(array_reverse($element), 0, 3)) as $link) {
+                        $page = explode('page=', $link)[1];
+                        $links[$page] = $link;
+                    }
+                    $elements[$key] = $links;
+                }
+            }
+        }
+        return $elements;
+    }
+}
