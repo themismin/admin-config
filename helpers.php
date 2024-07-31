@@ -214,12 +214,20 @@ if (!function_exists('format_date')) {
      */
     function format_date($date, $lang = 'zh-TW')
     {
-        if ('zh-TW' == $lang) {
-            $week = ["週日", "週一", "週二", "週三", "週四", "週五", "週六"];
-        } else {
-            $week = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+        switch ($lang) {
+            case 'en':
+                $week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                return $week[date('w', strtotime($date))] . ', ' . date('F jS', strtotime($date));
+                break;
+            case 'zh-TW':
+                $week = ["週日", "週一", "週二", "週三", "週四", "週五", "週六"];
+                return date('m月d日', strtotime($date)) . ' ' . $week[date('w', strtotime($date))];
+                break;
+            default:
+                $week = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+                return date('m月d日', strtotime($date)) . ' ' . $week[date('w', strtotime($date))];
+                break;
         }
-        return date('m月d日', strtotime($date)) . ' ' . $week[date('w', strtotime($date))];
     }
 }
 
