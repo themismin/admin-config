@@ -382,11 +382,16 @@ if (!function_exists('asset_oss')) {
     /**
      * cos 资源文件加载
      * @param $path
+     * @param $prefix
      * @return string
      */
-    function asset_oss($path)
+    function asset_oss($path, $prefix = null)
     {
-        return trim(config('filesystems.disks.admin.cdn'), '/') . '/' . trim($path, '/');
+        $rs = trim(config('filesystems.disks.admin.cdn'), '/');
+        if ($prefix) {
+            $rs .= '/' . trim($prefix, '/');
+        }
+        return $rs . '/' . trim($path, '/');
     }
 }
 
@@ -401,6 +406,20 @@ if (!function_exists('asset_cn')) {
         return trim(config('filesystems.disks.admin.cdn'), '/') . '/lanshauk-cn/' . trim($path, '/');
     }
 }
+
+
+if (!function_exists('asset_www')) {
+    /**
+     * 网站 cos 资源文件加载 lanshauk-www
+     * @param $path
+     * @return string
+     */
+    function asset_www($path)
+    {
+        return trim(config('filesystems.disks.admin.cdn'), '/') . '/lanshauk-www/' . trim($path, '/');
+    }
+}
+
 
 if (!function_exists('pages_reduce')) {
     function pages_reduce($elements)
