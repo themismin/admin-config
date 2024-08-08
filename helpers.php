@@ -391,7 +391,7 @@ if (!function_exists('asset_oss')) {
         if ($prefix) {
             $rs .= '/' . trim($prefix, '/');
         }
-        return $rs . '/' . trim($path, '/');
+        return $rs . '/' . trim($path, '/') . '?v=' . config('web.version');
     }
 }
 
@@ -403,7 +403,7 @@ if (!function_exists('asset_cn')) {
      */
     function asset_cn($path)
     {
-        return trim(config('filesystems.disks.admin.cdn'), '/') . '/lanshauk-cn/' . trim($path, '/');
+        return trim(config('filesystems.disks.admin.cdn'), '/') . '/lanshauk-cn/' . trim($path, '/') . '?v=' . config('web.version');
     }
 }
 
@@ -416,7 +416,7 @@ if (!function_exists('asset_www')) {
      */
     function asset_www($path)
     {
-        return trim(config('filesystems.disks.admin.cdn'), '/') . '/lanshauk-www/' . trim($path, '/');
+        return trim(config('filesystems.disks.admin.cdn'), '/') . '/lanshauk-www/' . trim($path, '/') . '?v=' . config('web.version');
     }
 }
 
