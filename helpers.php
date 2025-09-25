@@ -67,6 +67,19 @@ if (!function_exists('web_route')) {
     }
 }
 
+if (!function_exists('letukhome_route')) {
+    /**
+     * 网站路由
+     * @param      $str
+     * @param null $attrs
+     * @return string
+     */
+    function letukhome_route($str, $attrs = null)
+    {
+        return route(config('letukhome.route_prefix') . '.' . $str, $attrs);
+    }
+}
+
 if (!function_exists('img_crop')) {
     /**
      * 图片压缩
